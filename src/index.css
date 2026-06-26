@@ -89,3 +89,57 @@ body {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
 }
+
+@keyframes world-map-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes world-map-arc-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+@keyframes world-map-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.world-map-scroll {
+  animation: world-map-scroll 140s linear infinite;
+  will-change: transform;
+}
+
+.world-map-arc {
+  animation: world-map-arc-flow 4s linear infinite;
+}
+
+.world-map-scanline {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(20, 184, 150, 0.15) 50%,
+    transparent 100%
+  );
+  animation: world-map-scan 12s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-map-scroll,
+  .world-map-arc,
+  .world-map-scanline {
+    animation: none;
+  }
+}

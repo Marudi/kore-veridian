@@ -1,4 +1,6 @@
+import { handleCareerApplication } from './careers'
 import { handleContactRequest } from './contact'
+import { handleLoginRequest, handleLogoutRequest, handleSessionRequest } from './auth'
 import type { Env } from './types'
 
 export default {
@@ -7,6 +9,22 @@ export default {
 
     if (url.pathname === '/api/contact') {
       return handleContactRequest(request, env)
+    }
+
+    if (url.pathname === '/api/login') {
+      return handleLoginRequest(request, env)
+    }
+
+    if (url.pathname === '/api/session') {
+      return handleSessionRequest(request, env)
+    }
+
+    if (url.pathname === '/api/logout') {
+      return handleLogoutRequest(request)
+    }
+
+    if (url.pathname === '/api/careers') {
+      return handleCareerApplication(request, env)
     }
 
     if (url.pathname === '/api/health') {

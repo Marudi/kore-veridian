@@ -5,7 +5,7 @@ const MAX_NAME = 120
 const MAX_EMAIL = 254
 const MAX_COMPANY = 200
 const MAX_MESSAGE = 5000
-const ALLOWED_TYPES = new Set(['demo', 'consulting', 'managed', 'voice', 'partner', 'general'])
+const ALLOWED_TYPES = new Set(['demo', 'consulting', 'managed', 'voice', 'partner', 'support', 'general'])
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -77,7 +77,7 @@ export async function handleContactRequest(request: Request, env: Env): Promise<
   } catch (error) {
     console.error('[contact] submission failed:', error)
     return jsonResponse(
-      { error: 'Unable to send your message right now. Please email hello@koreveridian.com directly.' },
+      { error: 'Unable to send your message right now. Please email contact@koreveridian.ca directly.' },
       503,
     )
   }

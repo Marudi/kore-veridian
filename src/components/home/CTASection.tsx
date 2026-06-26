@@ -17,7 +17,7 @@ export function CTASection() {
             operations team — Kore Veridian is ready to deliver.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact?type=demo">
+            <Button variant="primary" size="lg" href="/demo">
               Schedule a Demo
               <ArrowRight className="w-5 h-5" />
             </Button>

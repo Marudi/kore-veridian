@@ -23,6 +23,10 @@ import {
   Zap,
   Lock,
   RefreshCw,
+  LifeBuoy,
+  Handshake,
+  Link2,
+  ShieldCheck,
 } from 'lucide-react'
 
 export interface NavItem {
@@ -44,8 +48,8 @@ export interface NavMenu {
 }
 
 export const topLinks = [
-  { label: 'Support', href: '/contact' },
-  { label: 'Partner with Us', href: '/contact?type=partner' },
+  { label: 'Support', href: '/support' },
+  { label: 'Partner with Us', href: '/partners' },
   { label: 'Contact Us', href: '/contact' },
 ]
 
@@ -206,11 +210,23 @@ export const mainNavigation: NavMenu[] = [
             href: '/solutions#b2b',
             icon: BarChart3,
           },
+          {
+            title: 'Blockchain Layering',
+            description: 'Multi-layer ledger integration for audit trails and trusted workloads.',
+            href: '/solutions#blockchain',
+            icon: Link2,
+          },
         ],
       },
       {
         label: 'Cloud Services',
         items: [
+          {
+            title: 'Cloud Security Guardrails',
+            description: 'Policy-driven controls, zero-trust, and continuous compliance enforcement.',
+            href: '/solutions#security-guardrails',
+            icon: ShieldCheck,
+          },
           {
             title: 'Business Continuity & DR',
             description: 'Backup, disaster recovery, and cloud storage services.',
@@ -304,14 +320,32 @@ export const mainNavigation: NavMenu[] = [
             icon: Users,
           },
           {
+            title: 'Company Overview',
+            description: 'Global presence, mission, and company hub.',
+            href: '/company',
+            icon: Building2,
+          },
+          {
             title: 'Careers',
             description: 'Join our team of cloud and voice innovators.',
-            href: '/about#careers',
+            href: '/careers',
             icon: Briefcase,
           },
           {
+            title: 'Support Center',
+            description: 'Technical support, SLAs, and ticket submission.',
+            href: '/support',
+            icon: LifeBuoy,
+          },
+          {
+            title: 'Partner Program',
+            description: 'Join our MSP, technology, and carrier partner ecosystem.',
+            href: '/partners',
+            icon: Handshake,
+          },
+          {
             title: 'Contact',
-            description: 'Get in touch with our solutions team.',
+            description: 'Sales, general inquiries, and demo requests.',
             href: '/contact',
             icon: Headphones,
           },
@@ -321,7 +355,60 @@ export const mainNavigation: NavMenu[] = [
   },
   {
     label: 'Company',
-    href: '/about',
+    columns: [
+      {
+        label: 'Who We Are',
+        items: [
+          {
+            title: 'Company Overview',
+            description: 'Mission, global presence, and what we stand for.',
+            href: '/company',
+            icon: Building2,
+          },
+          {
+            title: 'About Kore Veridian',
+            description: 'Our story, values, and cloud-first philosophy.',
+            href: '/about',
+            icon: Users,
+          },
+          {
+            title: 'Careers',
+            description: 'Join our team of cloud and voice innovators.',
+            href: '/careers',
+            icon: Briefcase,
+          },
+        ],
+      },
+      {
+        label: 'Connect',
+        items: [
+          {
+            title: 'Request a Demo',
+            description: 'See the platform in a live guided session.',
+            href: '/demo',
+            icon: Zap,
+          },
+          {
+            title: 'Contact',
+            description: 'Sales, support, and general inquiries.',
+            href: '/contact',
+            icon: Headphones,
+          },
+          {
+            title: 'Support Center',
+            description: 'Technical support, SLAs, and tickets.',
+            href: '/support',
+            icon: LifeBuoy,
+          },
+          {
+            title: 'Partner Program',
+            description: 'MSP, technology, and carrier partnerships.',
+            href: '/partners',
+            icon: Handshake,
+          },
+        ],
+      },
+    ],
   },
 ]
 
@@ -341,13 +428,19 @@ export const footerNavigation = {
   solutions: [
     { label: 'Public Cloud', href: '/solutions#public-cloud' },
     { label: 'Private Cloud', href: '/solutions#private-cloud' },
+    { label: 'Blockchain Layering', href: '/solutions#blockchain' },
+    { label: 'Security Guardrails', href: '/solutions#security-guardrails' },
     { label: 'Kubernetes', href: '/solutions#kubernetes' },
     { label: 'AI Inference', href: '/solutions#ai' },
   ],
   company: [
+    { label: 'Company', href: '/company' },
     { label: 'About', href: '/about' },
+    { label: 'Careers', href: '/careers' },
     { label: 'Blog', href: '/blog' },
     { label: 'Resources', href: '/resources' },
+    { label: 'Support', href: '/support' },
+    { label: 'Partners', href: '/partners' },
     { label: 'Contact', href: '/contact' },
   ],
 }

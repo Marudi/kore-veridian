@@ -1,0 +1,111 @@
+name: Deploy Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    name: Preview deployment
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare preview Worker config
+        run: |
+          node <<'EOF'
+          const fs = require('fs')
+          const configPath = 'dist/kore_veridian/wrangler.json'
+          const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
+          delete config.routes
+          config.workers_dev = true
+          fs.writeFileSync(configPath, JSON.stringify(config))
+          EOF
+
+      - name: Deploy preview Worker
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config dist/kore_veridian/wrangler.json --name kore-veridian-pr-${{ github.event.pull_request.number }}
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: https://kore-veridian-pr-${{ github.event.pull_request.number }}.klinicx-dev.workers.dev
+        with:
+          script: |
+            const previewUrl = process.env.PREVIEW_URL
+            const body = [
+              '### Kore Veridian preview deployment',
+              '',
+              `Preview URL: ${previewUrl}`,
+              '',
+              `Commit: \`${context.sha.substring(0, 7)}\``,
+              '',
+              '_This preview updates automatically when you push to this PR._',
+            ].join('\n')
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+
+            const marker = '<!-- kore-veridian-preview -->'
+            const existing = comments.find((c) => c.body?.includes(marker))
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: `${marker}\n${body}`,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `${marker}\n${body}`,
+              })
+            }
+
+  cleanup-preview:
+    name: Remove preview Worker
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Delete preview Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: delete kore-veridian-pr-${{ github.event.pull_request.number }} --force

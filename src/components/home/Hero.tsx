@@ -2,18 +2,24 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { heroContent } from '../../data/content'
 import { Button } from '../ui/Button'
-import { GradientOrb, FlowGrid, FloatingParticles } from '../ui/GradientOrb'
+import { GradientOrb, FloatingParticles } from '../ui/GradientOrb'
+import { VideoHeroBackground } from '../ui/VideoHeroBackground'
+import { PAGE_HERO_VIDEO, PAGE_HERO_VIDEO_VARIANT } from '../../config/media'
 
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      <FlowGrid />
+      <VideoHeroBackground src={PAGE_HERO_VIDEO} variant={PAGE_HERO_VIDEO_VARIANT} />
       <FloatingParticles />
-      <GradientOrb className="top-20 -left-32" color="veridian" size="lg" />
-      <GradientOrb className="bottom-20 -right-32" color="purple" size="lg" />
-      <GradientOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" color="blue" size="md" />
+      <GradientOrb className="top-20 -left-32 opacity-40" color="veridian" size="lg" />
+      <GradientOrb className="bottom-20 -right-32 opacity-35" color="purple" size="lg" />
+      <GradientOrb
+        className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25"
+        color="blue"
+        size="md"
+      />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,7 +56,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button variant="primary" size="lg" href="/contact?type=demo">
+            <Button variant="primary" size="lg" href="/demo">
               {heroContent.primaryCta}
               <ArrowRight className="w-5 h-5" />
             </Button>

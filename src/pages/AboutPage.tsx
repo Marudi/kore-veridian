@@ -1,7 +1,9 @@
-import { Target, Eye, Heart, Users } from 'lucide-react'
+import { Target, Eye, Heart, Users, ArrowRight } from 'lucide-react'
 import { PageHero } from '../components/ui/PageHero'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '../components/ui/AnimatedSection'
 import { CTASection } from '../components/home/CTASection'
+import { CareersSection } from '../components/careers/CareersSection'
+import { Button } from '../components/ui/Button'
 
 const values = [
   {
@@ -24,13 +26,6 @@ const values = [
     title: 'Expertise',
     description: 'Senior engineers on every engagement. Our team has built and operated infrastructure at enterprise scale.',
   },
-]
-
-const openRoles = [
-  { title: 'Senior Cloud Architect', location: 'Remote', dept: 'Engineering' },
-  { title: 'Voice Platform Engineer', location: 'Remote', dept: 'Voice Services' },
-  { title: 'DevOps / SRE Engineer', location: 'Remote', dept: 'Managed Services' },
-  { title: 'Solutions Consultant', location: 'Remote', dept: 'Consulting' },
 ]
 
 export function AboutPage() {
@@ -98,22 +93,18 @@ export function AboutPage() {
 
       <section id="careers" className="py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Join Our Team</h2>
-            <p className="text-text-secondary">We&apos;re always looking for talented cloud, voice, and AI engineers.</p>
+            <p className="text-text-secondary max-w-2xl mx-auto mb-6">
+              We&apos;re building the next generation of cloud and voice infrastructure. Explore open roles,
+              review full job descriptions, and submit your resume directly.
+            </p>
+            <Button variant="outline" href="/careers">
+              View All Open Roles
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-            {openRoles.map((role) => (
-              <StaggerItem key={role.title}>
-                <div className="p-6 rounded-2xl bg-bg-card border border-border-subtle hover:border-veridian/20 transition-all">
-                  <h4 className="font-semibold mb-1">{role.title}</h4>
-                  <div className="text-sm text-text-muted">
-                    {role.dept} &middot; {role.location}
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <CareersSection compact />
         </div>
       </section>
 

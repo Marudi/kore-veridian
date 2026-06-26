@@ -200,7 +200,7 @@ export const resources: ResourceItem[] = [
     title: 'Platform Demo: Cloud + Voice Unified',
     description: 'Recorded walkthrough of the Kore Veridian control plane, voice platform, and AI operations hub.',
     type: 'webinar',
-    href: '/contact?type=demo',
+    href: '/demo',
     category: 'Product',
   },
 ]

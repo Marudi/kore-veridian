@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { mainNavigation, topLinks } from '../../data/navigation'
-import { companyTagline } from '../../data/content'
 import { MegaMenu } from '../navigation/MegaMenu'
 import { Button } from '../ui/Button'
+import { BrandLogo } from '../ui/BrandLogo'
 import { cn } from '../../lib/utils'
 
 export function Header() {
@@ -13,6 +13,11 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+
+  const activeMenuData = useMemo(
+    () => mainNavigation.find((item) => item.label === activeMenu && item.columns),
+    [activeMenu],
+  )
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -26,7 +31,7 @@ export function Header() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-40">
+    <header className="sticky top-0 z-50">
       {/* Top utility bar */}
       <div className="hidden lg:block border-b border-border-subtle bg-bg-secondary/80">
         <div className="max-w-7xl mx-auto px-6 flex justify-end gap-6 py-2">
@@ -46,46 +51,37 @@ export function Header() {
       <motion.nav
         className={cn(
           'relative transition-all duration-300',
-          scrolled ? 'bg-bg-primary/90 backdrop-blur-xl shadow-lg shadow-black/20' : 'bg-bg-primary/70 backdrop-blur-md',
+          scrolled ? 'bg-bg-primary/95 backdrop-blur-xl shadow-lg shadow-black/20' : 'bg-bg-primary/90 backdrop-blur-md',
         )}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.5 }}
+        onMouseLeave={() => setActiveMenu(null)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-              <img
-                src="/logos/High-Resolution-Logo-White-on-Transparent-Background.svg"
-                alt="Kore Veridian"
-                className="h-8 lg:h-9 w-auto"
-              />
-              <span className="hidden xl:block text-[10px] text-text-muted leading-tight max-w-[120px]">
-                {companyTagline}
-              </span>
+            <Link to="/" className="flex-shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-veridian/50">
+              <BrandLogo variant="header" />
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-0.5">
               {mainNavigation.map((item) => (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => item.columns && setActiveMenu(item.label)}
-                  onMouseLeave={() => setActiveMenu(null)}
-                >
+                <div key={item.label}>
                   {item.href ? (
                     <Link
                       to={item.href}
-                      className="flex items-center gap-1 px-4 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-white/5"
+                      className="flex items-center gap-1 px-3.5 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-white/5 whitespace-nowrap"
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <button
+                      type="button"
+                      onMouseEnter={() => item.columns && setActiveMenu(item.label)}
                       className={cn(
-                        'flex items-center gap-1 px-4 py-2 text-sm transition-colors rounded-lg',
+                        'flex items-center gap-1 px-3.5 py-2 text-sm transition-colors rounded-lg whitespace-nowrap',
                         activeMenu === item.label
                           ? 'text-veridian bg-veridian/10'
                           : 'text-text-secondary hover:text-text-primary hover:bg-white/5',
@@ -100,19 +96,16 @@ export function Header() {
                       />
                     </button>
                   )}
-                  {item.columns && (
-                    <MegaMenu menu={item} isOpen={activeMenu === item.label} onClose={() => setActiveMenu(null)} />
-                  )}
                 </div>
               ))}
             </div>
 
             {/* CTA buttons */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Button variant="secondary" size="sm" href="/contact">
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              <Button variant="secondary" size="sm" href="/login">
                 Login
               </Button>
-              <Button variant="primary" size="sm" href="/contact?type=demo">
+              <Button variant="primary" size="sm" href="/demo">
                 Request a Demo
               </Button>
             </div>
@@ -127,6 +120,18 @@ export function Header() {
             </button>
           </div>
         </div>
+
+        {/* Full-width mega menu panel */}
+        <AnimatePresence>
+          {activeMenuData && (
+            <MegaMenu
+              key={activeMenuData.label}
+              menu={activeMenuData}
+              isOpen
+              onClose={() => setActiveMenu(null)}
+            />
+          )}
+        </AnimatePresence>
 
         {/* Mobile menu */}
         <AnimatePresence>
@@ -173,10 +178,10 @@ export function Header() {
                   </div>
                 ))}
                 <div className="flex flex-col gap-3 pt-4 border-t border-border-subtle">
-                  <Button variant="secondary" href="/contact" className="w-full">
+                  <Button variant="secondary" href="/login" className="w-full">
                     Login
                   </Button>
-                  <Button variant="primary" href="/contact?type=demo" className="w-full">
+                  <Button variant="primary" href="/demo" className="w-full">
                     Request a Demo
                   </Button>
                 </div>

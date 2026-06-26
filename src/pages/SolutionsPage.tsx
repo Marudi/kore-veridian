@@ -11,6 +11,8 @@ import {
   Building2,
   Network,
   Phone,
+  Link2,
+  ShieldCheck,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { PageHero } from '../components/ui/PageHero'
@@ -53,6 +55,22 @@ const solutions: Solution[] = [
     icon: BarChart3,
     title: 'B2B Cloud Business',
     description: 'Built-in billing, reseller management, subscription models, and chargeback — everything you need to run a cloud business.',
+  },
+  {
+    id: 'blockchain',
+    category: 'Key Solutions',
+    icon: Link2,
+    title: 'Blockchain Layering',
+    description:
+      'Integrate distributed ledger layers across your cloud stack — from immutable audit trails and provenance tracking to smart-contract orchestration and cross-chain interoperability, without sacrificing performance or operational control.',
+  },
+  {
+    id: 'security-guardrails',
+    category: 'Cloud Services',
+    icon: ShieldCheck,
+    title: 'Cloud Security Guardrails',
+    description:
+      'Robust, policy-driven security guardrails embedded at every layer — zero-trust networking, identity-aware access, encryption by default, continuous compliance scanning, and automated remediation aligned with SOC 2, HIPAA, and ISO 27001 frameworks.',
   },
   {
     id: 'dr',
@@ -128,7 +146,7 @@ export function SolutionsPage() {
         badge="Solutions"
         title="Solutions for Every"
         titleAccent="Cloud Challenge"
-        description="From public cloud platforms to industry-specific deployments — Kore Veridian delivers turnkey solutions that accelerate your time to market."
+        description="From public cloud platforms to blockchain-integrated workloads and enterprise security guardrails — Kore Veridian delivers turnkey solutions that accelerate your time to market."
       />
 
       {categories.map((category) => (

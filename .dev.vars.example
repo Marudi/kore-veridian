@@ -1,8 +1,15 @@
-# Resend API key for contact form email delivery
-# Create at https://resend.com/api-keys
-RESEND_API_KEY=re_xxxxxxxxxxxx
+# Portal login password (issued to customers/partners after onboarding)
+PORTAL_LOGIN_PASSWORD=your-portal-password
 
-# Override defaults from wrangler.jsonc if needed
-# CONTACT_TO_EMAIL=hello@koreveridian.com
-# CONTACT_FROM_EMAIL=Kore Veridian <notifications@yourdomain.com>
+# Session signing secret — generate a long random string for production
+PORTAL_SESSION_SECRET=your-random-session-secret
+# Use the password for contact@koreveridian.ca from Namecheap Private Email
+SMTP_PASSWORD=your-private-email-password
+
+# Defaults match wrangler.jsonc (override locally if needed)
+# SMTP_HOST=mail.privateemail.com
+# SMTP_PORT=465
+# SMTP_USER=contact@koreveridian.ca
+# CONTACT_TO_EMAIL=contact@koreveridian.ca
+# CONTACT_FROM_EMAIL=Kore Veridian <contact@koreveridian.ca>
 # ENVIRONMENT=development

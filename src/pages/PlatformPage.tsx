@@ -109,7 +109,7 @@ export function PlatformPage() {
       </section>
 
       <section className="py-16 text-center">
-        <Button variant="primary" size="lg" href="/contact?type=demo">
+        <Button variant="primary" size="lg" href="/demo">
           Request Platform Demo
         </Button>
       </section>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Mail } from 'lucide-react'
 import { footerNavigation } from '../../data/navigation'
 import { companyTagline } from '../../data/content'
+import { BrandLogo } from '../ui/BrandLogo'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -13,12 +14,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link to="/" className="inline-block mb-4">
-              <img
-                src="/logos/High-Resolution-Logo-White-on-Transparent-Background.svg"
-                alt="Kore Veridian"
-                className="h-8 w-auto"
-              />
+            <Link to="/" className="inline-block mb-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-veridian/50">
+              <BrandLogo variant="footer" showTagline={false} />
             </Link>
             <p className="text-sm text-text-muted leading-relaxed max-w-xs mb-6">
               {companyTagline} Cloud-first, AI-powered consulting, managed services, and voice platform solutions.
