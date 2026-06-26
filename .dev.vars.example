@@ -1,0 +1,8 @@
+# Resend API key for contact form email delivery
+# Create at https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxxxx
+
+# Override defaults from wrangler.jsonc if needed
+# CONTACT_TO_EMAIL=hello@koreveridian.com
+# CONTACT_FROM_EMAIL=Kore Veridian <notifications@yourdomain.com>
+# ENVIRONMENT=development
