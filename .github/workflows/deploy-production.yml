@@ -40,12 +40,22 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Prepare production Worker config
+        run: |
+          node <<'EOF'
+          const fs = require('fs')
+          const configPath = 'dist/kore_veridian/wrangler.json'
+          const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
+          delete config.configPath
+          delete config.userConfigPath
+          fs.writeFileSync(configPath, JSON.stringify(config))
+          EOF
+
       - name: Deploy Worker & assets
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --config dist/kore_veridian/wrangler.json
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --config dist/kore_veridian/wrangler.json
 
       - name: Deployment summary
         run: |
