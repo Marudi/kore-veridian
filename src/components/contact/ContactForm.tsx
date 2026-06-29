@@ -3,16 +3,7 @@ import { motion } from 'framer-motion'
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { submitContactForm } from '../../lib/api'
-
-export const inquiryTypes = [
-  { value: 'demo', label: 'Request a Demo' },
-  { value: 'consulting', label: 'Consulting Inquiry' },
-  { value: 'managed', label: 'Managed Services' },
-  { value: 'voice', label: 'Voice Services' },
-  { value: 'partner', label: 'Partner Program' },
-  { value: 'support', label: 'Technical Support' },
-  { value: 'general', label: 'General Inquiry' },
-]
+import { inquiryTypes } from './inquiryTypes'
 
 interface ContactFormProps {
   defaultType?: string
