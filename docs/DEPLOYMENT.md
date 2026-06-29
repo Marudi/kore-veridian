@@ -47,6 +47,16 @@ Add these under **Settings → Secrets and variables → Actions**:
 
 Create the token at [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) using the **Edit Cloudflare Workers** template.
 
+### Automated setup (local)
+
+If you are logged in to Cloudflare (`npx wrangler login`) and GitHub (Cursor / Git credential manager), run:
+
+```bash
+node scripts/setup-github-secrets.mjs
+```
+
+This reads your local Wrangler OAuth session and GitHub credentials, then writes both repository secrets. Re-run after `wrangler login` if the OAuth token expires. For long-lived CI, replace `CLOUDFLARE_API_TOKEN` in GitHub with a dedicated dashboard API token.
+
 Optional: create a **production** environment in GitHub with required reviewers before deploys go live.
 
 ## Cloudflare Worker secrets (one-time)

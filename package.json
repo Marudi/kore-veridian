@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "ci": "npm run lint && npm run build",
+    "setup:secrets": "node scripts/setup-github-secrets.mjs",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types"
@@ -23,6 +24,8 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.42.3",
     "@cloudflare/workers-types": "^4.20260626.1",
+    "@emnapi/core": "^1.11.1",
+    "@emnapi/runtime": "^1.11.1",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^24.13.2",
@@ -31,6 +34,7 @@
     "@vitejs/plugin-react": "^6.0.2",
     "oxlint": "^1.69.0",
     "tailwindcss": "^4.3.1",
+    "tweetsodium": "^0.0.4",
     "typescript": "~6.0.2",
     "vite": "^8.1.0",
     "wrangler": "^4.105.0"
