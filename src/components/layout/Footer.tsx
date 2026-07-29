@@ -72,13 +72,13 @@ export function Footer() {
             &copy; {currentYear} Kore Veridian. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/contact" className="text-xs text-text-muted hover:text-text-primary transition-colors">
+            <Link to="/privacy" className="text-xs text-text-muted hover:text-text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/contact" className="text-xs text-text-muted hover:text-text-primary transition-colors">
+            <Link to="/terms" className="text-xs text-text-muted hover:text-text-primary transition-colors">
               Terms of Service
             </Link>
-            <Link to="/contact" className="text-xs text-text-muted hover:text-text-primary transition-colors">
+            <Link to="/security" className="text-xs text-text-muted hover:text-text-primary transition-colors">
               Security
             </Link>
           </div>

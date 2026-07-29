@@ -137,9 +137,61 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .world-map-scroll,
   .world-map-arc,
   .world-map-scanline {
     animation: none;
+  }
+}
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  header,
+  footer,
+  .legal-screen-only {
+    display: none !important;
+  }
+
+  .legal-document-page,
+  .legal-document-page section,
+  .legal-document-page article,
+  .legal-document-page div {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .legal-document-page {
+    color: #111827 !important;
+  }
+
+  .legal-document-page p,
+  .legal-document-page li,
+  .legal-document-page span {
+    color: #374151 !important;
+  }
+
+  .legal-document-page h1,
+  .legal-document-page h2,
+  .legal-document-page h3 {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+  }
+
+  .legal-document-section {
+    break-inside: avoid;
+    border-color: #d1d5db !important;
+    margin-bottom: 12pt;
   }
 }

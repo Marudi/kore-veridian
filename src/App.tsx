@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import { Layout } from './components/layout/Layout'
 import { HomePage } from './pages/HomePage'
 import { PlatformPage } from './pages/PlatformPage'
@@ -20,6 +20,9 @@ import { CompanyPage } from './pages/CompanyPage'
 import { LoginPage } from './pages/LoginPage'
 import { PortalPage } from './pages/PortalPage'
 import { ResourcesPage } from './pages/ResourcesPage'
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage'
+import { TermsOfServicePage } from './pages/TermsOfServicePage'
+import { SecurityPage } from './pages/SecurityPage'
 
 export default function App() {
   return (
@@ -46,6 +49,11 @@ export default function App() {
           <Route path="demo" element={<DemoPage />} />
           <Route path="company" element={<CompanyPage />} />
           <Route path="portal" element={<PortalPage />} />
+          <Route path="privacy" element={<PrivacyPolicyPage />} />
+          <Route path="privacy-policy" element={<Navigate to="/privacy" replace />} />
+          <Route path="terms" element={<TermsOfServicePage />} />
+          <Route path="terms-of-service" element={<Navigate to="/terms" replace />} />
+          <Route path="security" element={<SecurityPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
