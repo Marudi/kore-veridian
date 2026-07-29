@@ -65,8 +65,8 @@ export function ContactPage() {
                     {
                       icon: Phone,
                       label: 'Sales & Support',
-                      value: '+1 (800) 555-0142',
-                      href: 'tel:+18005550142',
+                      value: '+1 343-6492707',
+                      href: 'tel:+13436492707',
                     },
                     { icon: MapPin, label: 'Headquarters', value: 'Canada' },
                     { icon: Clock, label: 'Business Hours', value: 'Mon–Fri, 8am–6pm ET' },

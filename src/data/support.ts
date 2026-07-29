@@ -15,7 +15,7 @@ export const supportChannels = [
     title: 'Phone Support',
     description: 'Priority and enterprise customers can reach our NOC directly for live assistance.',
     availability: '24/7 for Enterprise tier',
-    contact: '+1 (800) 555-0142',
+    contact: '+1 343-6492707',
   },
   {
     title: 'Emergency Escalation',

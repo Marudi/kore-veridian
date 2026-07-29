@@ -123,8 +123,8 @@ export function SalesContactPage() {
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Phone className="w-4 h-4 text-veridian" />
-                    <a href="tel:+18005550142" className="text-text-primary hover:text-veridian">
-                      +1 (800) 555-0142
+                    <a href="tel:+13436492707" className="text-text-primary hover:text-veridian">
+                      +1 343-6492707
                     </a>
                   </div>
                 </div>
